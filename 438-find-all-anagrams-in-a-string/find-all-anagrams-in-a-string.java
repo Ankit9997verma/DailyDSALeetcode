@@ -3,7 +3,6 @@ import java.util.*;
 class Solution {
     public List<Integer> findAnagrams(String s, String p) {
         List<Integer> res = new ArrayList<>();
-       // if (s.length() < p.length()) return res;
 
         int[] freqP = new int[26];
         int[] freqS = new int[26];
