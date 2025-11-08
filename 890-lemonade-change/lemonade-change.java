@@ -4,40 +4,30 @@ class Solution {
         int ten=0;
         for(int i=0;i<bills.length;i++){
             int element=bills[i];
-            
-            if(element==5) five++;
-                
-            
-                
-                  else {
-                      if(element==10 ){
+             if(element==5) {
+                five++;
+             }
+             else{
+                if(element==10){
+                    ten++;
+                    five--;
+                }else{
+                    if(ten>0){
+                        ten--;
                         five--;
-                          ten++;
-                     }
-                      else{
-                        if(ten>0 ){
-
-                              ten--;
-                              five--;
+                    }else{
+                        five=five-3;
+                    }
                 }
-                     else five=five-3;
-                     
-                    
+             }
+             if(five<0){
+                return false;
+             }
                 
             }
-                    
-                
-                if(five<0)
-                    return false;
-                
-
-
-                  }
-                
-
-            
-        }
-        return true;
-        
+            return true ;
+         
     }
 }
+
+
