@@ -1,22 +1,11 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-        int start = 1;
-        int end = nums.length - 1;
-        int ans = -1;
-       while (start <= end) {
-            int mid = start + (end - start) / 2;
-            int count = 0;
-            for (int num : nums) {
-                if (num <= mid) count++;
-            }
-
-            if (count > mid) {
-                ans = mid;       
-                end = mid - 1;
-            } else {
-                start = mid + 1; 
+        Arrays.sort(nums);
+        for(int i =1 ; i<nums.length ; i++){
+            if(nums[i]==nums[i-1]){
+                return nums[i];
             }
         }
-        return ans;
+        return -1;
     }
 }
