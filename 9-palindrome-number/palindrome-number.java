@@ -1,14 +1,19 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        int org = x;
-        int rev = 0;
-        
-        while(org > 0){
-            int unit = org%10;
-            rev = 10*rev+unit;
-            org/=10;
+        if (x < 0) return false;
+
+        int original = x;
+        int ans = 0;
+
+        while (x != 0) {
+            int digit = x % 10;
+            x = x / 10;
+            if (ans > Integer.MAX_VALUE / 10 || (ans == Integer.MAX_VALUE / 10 && digit > 7))
+                return false;
+
+            ans = ans * 10 + digit;
         }
-        
-        return rev == x;
-        }
+
+        return original == ans;
     }
+}
