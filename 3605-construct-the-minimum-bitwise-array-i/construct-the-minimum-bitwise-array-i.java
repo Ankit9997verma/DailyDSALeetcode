@@ -1,37 +1,38 @@
-// class Solution {
-//     public int[] minBitwiseArray(List<Integer> nums) {
-//         // int n = nums.size() ;
-//         // int[] ans = new int[n];
-
-//         // for(int i =0 ; i< n ; i++){
-//         //    for(int j=0 ; j< 1000 ; j++){
-//         //      if((j)|(j+1) == nums.get(i)){
-//         //         ans[i]=j;
-//         //      }else{
-//         //         ans[i]=-1;
-//         //      }
-//         //    }
-//         // }
-//         // return ans;
-//     }
-// }
-
-
-class Solution {
+ class Solution {
     public int[] minBitwiseArray(List<Integer> nums) {
-        int n = nums.size();
+        int n = nums.size() ;
         int[] ans = new int[n];
 
-        for (int i = 0; i < n; i++) {
-            ans[i] = -1; 
-
-            for (int j = 0; j < 1000; j++) {
-                if ( (j | (j + 1)) == nums.get(i) ) {
-                    ans[i] = j;
-                    break;
-                }
-            }
+        for(int i =0 ; i< n ; i++){
+           for(int j=0 ; j< 1000 ; j++){
+             if((j|j+1) == nums.get(i)){
+                ans[i]=j;
+                break;
+             }else{
+                ans[i]=-1;
+             }
+           }
         }
         return ans;
     }
-}
+     }
+
+
+// class Solution {
+//     public int[] minBitwiseArray(List<Integer> nums) {
+//         int n = nums.size();
+//         int[] ans = new int[n];
+
+//         for (int i = 0; i < n; i++) {
+//             ans[i] = -1; 
+
+//             for (int j = 0; j < 1000; j++) {
+//                 if ( (j | (j + 1)) == nums.get(i) ) {
+//                     ans[i] = j;
+//                     break;
+//                 }
+//             }
+//         }
+//         return ans;
+//     }
+// }
