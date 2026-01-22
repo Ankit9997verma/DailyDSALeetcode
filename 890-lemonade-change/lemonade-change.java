@@ -11,12 +11,13 @@ class Solution {
                 if(element==10){
                     ten++;
                     five--;
-                }else{
+                }
+                else{
                     if(ten>0){
                         ten--;
                         five--;
                     }else{
-                        five=five-3;
+                        five = five-3 ;
                     }
                 }
              }
@@ -29,5 +30,4 @@ class Solution {
          
     }
 }
-
 
