@@ -7,7 +7,6 @@ class Solution {
         ans[1]=-1;
         while(start<= end){
             int mid= (start +(end-start)/2);
-
             if(nums[mid]== target){
                 ans[0]=mid;
                 end=mid-1;
