@@ -1,27 +1,24 @@
 class Solution {
-    public void helper(int open , int close , ArrayList<String> list , StringBuilder sb ){
-        if(open == 0 && close ==0){
+    public void helper(int open , int close , ArrayList<String> list , StringBuilder sb){
+        if(open==0 && close ==0){
             list.add(sb.toString());
-            return ;
+            return;
         }
-        if(open > 0){
-            StringBuilder op = new StringBuilder(sb);
-            op.append('(');
-            helper(open-1 ,close , list , op);
+        int len = sb.length();
+        if(open > 0 ){
+            helper( open-1 , close , list , sb.append('('));
+            sb.setLength(len);
         }
-        if(close >open){
-            StringBuilder op2 = new StringBuilder(sb);
-            op2.append(')');
-            helper(open , close-1 ,list , op2);
+        if(close > open){
+            helper( open , close-1 , list , sb.append(')'));
+            sb.setLength(len);
         }
     }
     public List<String> generateParenthesis(int n) {
         ArrayList<String> list = new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         sb.append('(');
-        int open = n-1 ; 
-        int close = n;
-        helper( open , close , list , sb);
+        helper(n-1 , n , list , sb);
         return list ;
     }
 }
