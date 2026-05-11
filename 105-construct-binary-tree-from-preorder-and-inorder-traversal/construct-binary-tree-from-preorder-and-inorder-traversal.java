@@ -13,20 +13,42 @@
  *     }
  * }
  */
-class Solution {
-    public TreeNode buildTree(int[] preorder, int[] inorder) {
-        if(preorder.length ==0) return null ;
-        int r = preorder[0];
-        int index=0;
-        for(int i =0 ; i< inorder.length ; i++){
-            if(inorder[i]==r){
-                index =i ; 
 
-            }
+class Solution {
+
+    int idx = 0;
+
+    public TreeNode build(int[] preorder, int[] inorder,
+                          int start, int end) {
+
+
+        if (start > end) return null;
+
+    
+        int rootVal = preorder[idx];
+        idx++;
+
+        TreeNode root = new TreeNode(rootVal);
+
+    
+        int i = start;
+
+        while (i <= end) {
+            if (inorder[i] == rootVal) break;
+            i++;
         }
-        TreeNode node = new TreeNode(r);
-        node.left = buildTree(Arrays.copyOfRange(preorder , 1 , index+1) , Arrays.copyOfRange(inorder , 0 , index));
-        node.right = buildTree(Arrays.copyOfRange(preorder , index+1, preorder.length) , Arrays.copyOfRange(inorder , index+1 , inorder.length));
-        return node ; 
+
+    
+        root.left = build(preorder, inorder, start, i - 1);
+
+      
+        root.right = build(preorder, inorder, i + 1, end);
+
+        return root;
+    }
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+
+        return build(preorder, inorder, 0, inorder.length - 1);
     }
 }
