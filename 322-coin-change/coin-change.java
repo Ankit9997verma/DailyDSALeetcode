@@ -1,40 +1,57 @@
 class Solution {
+
+    int[][] dp;
+
+    public int helper(int[] coins, int amount, int n) {
+
+        // amount formed
+        if(amount == 0)
+            return 0;
+
+        // no coins left
+        if(n == 0)
+            return Integer.MAX_VALUE - 1;
+
+        // already computed
+        if(dp[n][amount] != -1)
+            return dp[n][amount];
+
+        // take coin
+        if(coins[n - 1] <= amount) {
+
+            return dp[n][amount] = Math.min(
+
+                    1 + helper(coins,
+                               amount - coins[n - 1],
+                               n),
+
+                    helper(coins,
+                           amount,
+                           n - 1)
+            );
+        }
+
+        // skip coin
+        return dp[n][amount] =
+                helper(coins,
+                       amount,
+                       n - 1);
+    }
+
     public int coinChange(int[] coins, int amount) {
-        
+
         int n = coins.length;
-        int[][] dp = new int[n + 1][amount + 1];
 
-        for (int i = 0; i <= n; i++) {
-            for (int j = 0; j <= amount; j++) {
+        dp = new int[n + 1][amount + 1];
 
-                if (j == 0) {
-                    dp[i][j] = 0;
-                }
-
-                if (i == 0) {
-                    dp[i][j] = Integer.MAX_VALUE - 1;
-                }
-            }
+        for(int i = 0; i <= n; i++) {
+            Arrays.fill(dp[i], -1);
         }
 
-        for (int i = 1; i <= n; i++) {
-            for (int j = 1; j <= amount; j++) {
+        int ans = helper(coins, amount, n);
 
-                if (j >= coins[i - 1]) {
-                    dp[i][j] = Math.min(
-                        dp[i][j - coins[i - 1]] + 1,
-                        dp[i - 1][j]
-                    );
-                } else {
-                    dp[i][j] = dp[i - 1][j];
-                }
-            }
-        }
-
-        if (dp[n][amount] == Integer.MAX_VALUE - 1) {
-            return -1;
-        }
-
-        return dp[n][amount];
+        return ans >= Integer.MAX_VALUE - 1
+                ? -1
+                : ans;
     }
 }
