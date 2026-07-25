@@ -11,9 +11,9 @@ class Solution {
                 freq[i]--;
                 count++;
             }
-            if(freq[i]>0){
+          
                 set.add(freq[i]);
-            }
+            
         }
         return count ; 
     }
